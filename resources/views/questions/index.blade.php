@@ -10,6 +10,23 @@
                 <div class="card-body">
                    @foreach ($questions as $question)
                         <div class="media">
+                            <div>
+                                <div class="d-flex flex-column counters">
+                                    <div class="vote">
+                                        <strong>{{ $question->votes }}</strong> {{ Str::plural('vote', $question->votes) }}
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column counters">
+                                    <div class="status {{ $question->status }}">
+                                        <strong>{{ $question->answers }}</strong> {{ Str::plural('answer', $question->answers) }}
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column counters">
+                                    <div class="view">
+                                        {{ $question->views . " " . Str::plural('view', $question->views) }}
+                                    </div>
+                                </div>
+                            </div>
                             <div class="media-body">
                                 <h3 class="mt-0"><a href="{{ $question->url }}">{{ $question->title }}</a></h3>
                                 <p class="lead">
@@ -18,8 +35,8 @@
                                 <small class="text-muted">{{ $question->created_date }}</small>
                                 <p>{{ Str::limit($question->body, 250) }}</p>
                             </div>
-                            <hr>
                         </div>
+                        <hr>
                    @endforeach
                     
                     <div class="mx-auto">{{ $questions->links()}}</div>
