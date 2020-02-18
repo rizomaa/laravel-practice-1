@@ -37,7 +37,7 @@ class Question extends Model
         return 'unanswered';
     }
     
-    //such a function called as accessor
+    //such a function called as an accessor
     public function getBodyHtmlAttribute() {
         return \Parsedown::instance()->text($this->body);
     }
