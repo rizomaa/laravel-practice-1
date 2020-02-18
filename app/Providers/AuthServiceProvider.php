@@ -23,6 +23,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
+        //Policy method
         $this->registerPolicies();
 
         
@@ -31,12 +33,13 @@ class AuthServiceProvider extends ServiceProvider
         
         //$user = instance
         //$question = model instane in thi case $question
-        \Gate::define('update-question', function ($user, $question) {
+    /*    \Gate::define('update-question', function ($user, $question) {
             return $user->id === $question->user_id;
         });
         
         \Gate::define('delete-question', function ($user, $question) {
             return $user->id === $question->user_id;
         });
+        */
     }
 }
