@@ -45,7 +45,7 @@ class QuestionsController extends Controller
      */
     public function store(AskQuestionRequest $request)
     {
-       //dd('store!!!');App\Us
+       //dd('store!!!');
         $request->user()->questions()->create($request->only('title', 'body'));
         
         //return redirect('/questions');
@@ -57,21 +57,17 @@ class QuestionsController extends Controller
      *
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
-     */
-    public function show(Request $question)
+     */    
+    public function show(Question $question)
     {
-        //$question->increment('views');
         
-    //    $question->views = $question->views + 1;
+        $question->increment('views');
+        
+  //      $question->views = $question->views + 1;
 //        $question->save();
         
-        
-        
-        //return view('questions.show', compact('question'));
-        
-        
-        
-        dd($question);
+       return view('questions.show', compact('question'));
+     //   dd($question->body);
     }
 
     /**
@@ -83,6 +79,7 @@ class QuestionsController extends Controller
     public function edit(Question $question)
     {
         //return page and passed it in the question object
+   //     dd($question);
         return view('questions.edit', compact('question'));
     }
 
