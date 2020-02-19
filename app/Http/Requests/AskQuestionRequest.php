@@ -28,4 +28,4 @@ class AskQuestionRequest extends FormRequest
             'body' => 'required'
         ];
     }
-}
+}   
