@@ -32,11 +32,12 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::bind('slug', function($slug) {
-            return Question::where('slug', $slug)->first() ?? abort(404);
+            return Question::with('answers.user')->where('slug', $slug)->first() ?? abort(404);
         });
 
         parent::boot();
-    }
+    }vimi :q!
+        
 
     /**
      * Define the routes for the application.
