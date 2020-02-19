@@ -36,7 +36,7 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         parent::boot();
-    }vimi :q!
+    }
         
 
     /**
