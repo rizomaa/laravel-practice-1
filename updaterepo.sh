@@ -3,7 +3,7 @@
 MESSAGE=$1
 BRANCH=$2
 
-git add .
+git add *
 git commit -am "${MESSAGE}"
 git push origin $BRANCH
 git checkout master
