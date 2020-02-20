@@ -37054,6 +37054,8 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./fontawesome */ "./resources/js/fontawesome.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -37098,6 +37100,24 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/fontawesome.js":
+/*!*************************************!*\
+  !*** ./resources/js/fontawesome.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*import fontawesome from '@fortawesome/fontawesome-free';
+
+import faCaretUp from '@fortawesome/free-solid-svg-icons/faCaretUp';
+import faCaretDown from '@fortawesome/free-solid-svg-icons/faCaretDown';
+import faStar from '@fortawesome/free-solid-svg-icons/faStar';
+import faCheck from '@fortawesome/free-solid-svg-icons/faCheck';
+
+fontawesome.library.add([faCaretUp,faCaretDown,faCheck,faStar]);*/
 
 /***/ }),
 
