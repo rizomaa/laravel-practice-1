@@ -22,8 +22,7 @@
                             <a title="This answer is useless." class="vote-down">
                                 <i class="fas fa-caret-down fa-3x"></i>
                             </a>
-                            <a title="Mark this answer as a best answer" class="{{ $answer->status }} mt-3">exit
-                                
+                            <a title="Mark this answer as a best answer" class="{{ $answer->status }} mt-3">
                                 <i class="fas fa-check fa-2x"></i>
                             </a>
                         </div>

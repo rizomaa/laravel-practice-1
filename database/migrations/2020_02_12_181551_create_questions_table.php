@@ -14,7 +14,8 @@ class CreateQuestionsTable extends Migration
     public function up()
     {
         Schema::create('questions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            //$table->bigIncrements('id'); - this blocked foreign key formation from best_answer_id
+            $table->increments('id');
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('body');

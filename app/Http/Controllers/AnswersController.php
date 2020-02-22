@@ -45,7 +45,7 @@ class AnswersController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Answer  $answer
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\
      */
     public function update(Request $request, Question $question, Answer $answer)
     {

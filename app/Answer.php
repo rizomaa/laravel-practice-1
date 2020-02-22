@@ -31,12 +31,17 @@ class Answer extends Model
         });
         
         static::deleted(function($answer) {
-            $question = $answer->question;
-            $question->decrement('answers_count');
             
-            if ($question->best_answer_id === $answer->id) {
+            
+            $answer->question->decrement('answers_count');
+            
+            //relevant for lesson19a 
+            //$question = $answer->question;
+           // $question->decrement('answers_count');
+          /*  if ($question->best_answer_id === $answer->id) {
                 $question->best_answer_id = NULL;
                 $question->save();
+            }*/
         });
     }
     
