@@ -31,6 +31,7 @@ class Answer extends Model
         });
         
         static::deleted(function($answer) {
+            $question = $question->question;
             $answer->question->decrement('answers_count');
         });
     }
