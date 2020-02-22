@@ -19,8 +19,8 @@ class Answer extends Model
     }
     
     //such a function called as accessor
-    public function getBodyHtmlAttribute() {git 
-        return \Parsedown::instance()->text($thgit statusis->body);
+    public function getBodyHtmlAttribute() {
+        return \Parsedown::instance()->text($this->body);
     }
     
     public static function boot() {
