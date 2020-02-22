@@ -93,7 +93,7 @@ class QuestionsController extends Controller
         }
         */
         
-         return view('questions.edit', compact('question'));
+         return view('questions.edit', compact('question', 'answer'));
         
     }
 
