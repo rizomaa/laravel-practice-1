@@ -19,7 +19,7 @@ class Answer extends Model
     }
     
     //such a function called as accessor
-    public function getBodyHtmlAttribute() {
+    public function getBodyHtmlAttribute() {git
         return \Parsedown::instance()->text($this->body);
     }
     
