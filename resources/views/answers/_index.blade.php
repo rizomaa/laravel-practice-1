@@ -22,9 +22,24 @@
                             <a title="This answer is useless." class="vote-down">
                                 <i class="fas fa-caret-down fa-3x"></i>
                             </a>
-                            <a title="Mark this answer as a best answer" class="{{ $answer->status }} mt-3">
-                                <i class="fas fa-check fa-2x"></i>
-                            </a>
+                            
+                            @can ('accept', $answer)
+                                <a title="Mark this answer as a best answer" 
+                                   class="{{ $answer->status }} mt-3"
+                                   onClick="event.preventDefault(); document.getElementById('accept-answer-{{ $answer->id }}').submit();">
+                                    <i class="fas fa-check fa-2x"></i>
+                                </a>
+                                <form id="accept-answer-{{ $answer->id }}" action="{{ route('answers.accept', $answer->id) }}" method="POST" style="display:none">
+                                    @csrf
+                                </form>
+                            @else
+                                @if ($answer->is_best)
+                                    <a title="This answer is the best answer" class="{{ $answer->status }} mt-3">
+                                        <i class="fas fa-check fa-2x"></i>
+                                    </a>
+                                @endif
+                            @endcan
+                            
                         </div>
 
 
