@@ -34,3 +34,4 @@ Route::delete('/questions/{question}/favorites', 'FavoritesController@destroy')-
 
 //we do not need to specify the method 
 Route::post('/questions/{question}/vote', 'VoteQuestionController');
+Route::post('/answers/{answer}/vote', 'VoteAnswerController');
