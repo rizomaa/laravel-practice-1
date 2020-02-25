@@ -61,6 +61,37 @@ class User extends Authenticatable
         return $this->belongsToMany(Question::class, 'favorites')->withTimestamps();//, 'user_id', 'question_id');
     }
     
+    
+    //relationship method
+    public function voteQuestions() {
+        return $this->morphedByMany(Question::class, 'votable'); // The Eloquent will recognise a table name as `votables`
+    }
+    
+    public function voteAnswers() {
+        return $this->morphedByMany(Answer::class, 'votable'); // The Eloquent will recognise a table name as `votables`
+    }
+    
+    //custom method that places all vote logic
+    public function voteQuestion(Question $question, $vote) {
+        $voteQuestions = $this->voteQuestions();
+        if ($voteQuestions->where('votable_id', $question->id)->exists()) {
+            $voteQuestions->updateExistingPivot($question, ['vote' => $vote]);
+        } else {
+            $voteQuestions->attach($question, ['vote' => $vote]);
+        }
+        
+        $question->load('votes'); // here was just votes, but I think we need votes_count because we modified the column
+        
+        $downVotes = (int) $question->downVotes()->sum('vote');
+        $upVotes = (int) $question->upVotes()->sum('vote');
+        
+        // downVotes = votes()->wherePivot('vote', -1)  
+        
+        $question->votes_count = $upVotes + $downVotes;
+        $question->save();
+    }
+    
+    
 }
     
 
