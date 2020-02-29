@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Carbon\Carbon;
+use Carbon\Carbon;  
 
 class Question extends Model
 {
@@ -39,9 +39,15 @@ class Question extends Model
         return 'unanswered';
     }
     
+   /* public function setBodyAttribute($value) {
+        $this->attributes['body'] = $value;
+        // needs to add clean();
+    }*/
+    
     //such a function called as an accessor
     public function getBodyHtmlAttribute() {
-        return \Parsedown::instance()->text($this->body);
+     //   return clean($this->bodyHtml());
+        return $this->bodyHtml();
     }
     
     public function answers() {
@@ -68,8 +74,19 @@ class Question extends Model
     
     public function getFavoritesCountAttribute() {
         return $this->favorites()->count();
-    }    
-  
+    }
+    
+    public function getExerptAttribute() {
+        return $this->exerpt(250);
+    }
+    
+    private function bodyHtml() {
+        return \Parsedown::instance()->text($this->body);
+    }
+    
+    public function exerpt($length) {
+        return Str::limit(strip_tags($this->bodyHtml()), $length);
+    }
 }
 
 

@@ -64,7 +64,8 @@
                                     Asked by <a href="/{{ $question->user->url }}">{{ $question->user->name }}</a>
                                 </p>
                                 <small class="text-muted">{{ $question->created_date }}</small>
-                                <p>{{ Str::limit($question->body, 250) }}</p>
+                             
+                                <div class="exerpt">{{ $question->exerpt(3  00) }}</div>
                             </div>
                         </div>
                         <hr>

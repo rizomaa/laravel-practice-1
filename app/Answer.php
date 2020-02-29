@@ -22,6 +22,8 @@ class Answer extends Model
     
     //such a function called as accessor
     public function getBodyHtmlAttribute() {
+        
+        //clean can bee added here
         return \Parsedown::instance()->text($this->body);
     }
     

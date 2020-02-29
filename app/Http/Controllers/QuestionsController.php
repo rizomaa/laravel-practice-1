@@ -91,9 +91,9 @@ class QuestionsController extends Controller
         if (\Gate::denies('update-question', $question)) {
             abort(403, 'Access denied');
         }
-        */
-        
-         return view('questions.edit', compact('question', 'answer'));
+        */        
+         return view('questions.edit', compact('question'));
+         //return view('questions.edit', compact('question', 'answer'));
         
     }
 
