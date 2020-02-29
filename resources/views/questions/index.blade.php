@@ -18,7 +18,7 @@
                     
                    @include('layouts._messages')
                     
-                   @foreach ($questions as $question)
+                   @forelse ($questions as $question)
                         <div class="media">
                             <div>
                                 <div class="d-flex flex-column counters">
@@ -65,11 +65,15 @@
                                 </p>
                                 <small class="text-muted">{{ $question->created_date }}</small>
                              
-                                <div class="exerpt">{{ $question->exerpt(3  00) }}</div>
+                                <div class="exerpt">{{ $question->exerpt(300) }}</div>
                             </div>
                         </div>
                         <hr>
-                   @endforeach
+                    @empty 
+                        <div class="alert alert-warning">
+                            Please add your first question
+                        </div>
+                    @endforelse
                     
                     <div class="mx-auto">{{ $questions->links()}}</div>
                 </div>

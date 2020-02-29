@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class UsersQuestionsAnswersTableSeeder extends Seeder
+class   UsersQuestionsAnswersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,10 +12,10 @@ class UsersQuestionsAnswersTableSeeder extends Seeder
     public function run()
     {
         
-        \DB::table('answers')->delete;
+   /*     \DB::table('answers')->delete;
         \DB::table('questions')->delete;
         \DB::table('users')->delete;
-        
+     */   
         factory(\App\User::class, rand(1, 5))->create()->each(function($u) {
             $u->questions()->saveMany(
                 factory(\App\Question::class, rand(1, 5))->make()

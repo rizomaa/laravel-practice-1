@@ -51,7 +51,8 @@ class Question extends Model
     }
     
     public function answers() {
-        return $this->hasMany(Answer::class);
+        // if it necessary to use the sorting method in all placeses also better to use sorting in a perticular provider
+        return $this->hasMany(Answer::class)->orderBy('votes_count', 'DESC');
     }
     
     public function acceptBestAnswer(Answer $answer) {

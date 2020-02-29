@@ -1,4 +1,4 @@
-
+@if ($answerCount > 0)
 <div class="row mt-4">
     <div class="md-col-12">
         <div class="card">                
@@ -59,8 +59,9 @@
                         </div>
                     </div>
                     <hr>
-                @endforeach
+                @endforeach                
             </div>
         </div>
     </div>
 </div>
+@endif

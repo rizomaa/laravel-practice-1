@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         //bacause we will call multiple seeder files
         $this->call([
-            UsersAnswersQuestionsTableSeeder::class,
+            UsersQuestionsAnswersTableSeeder::class,
             FavoritesTableSeeder::class,
             VotablesTableSeeder::class,
         ]);
