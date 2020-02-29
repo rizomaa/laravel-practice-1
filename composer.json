@@ -14,7 +14,7 @@
         "laravel/framework": "^6.2",
         "laravel/helpers": "^1.1",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^1.1",
+        "laravel/ui": "^1.2",
         "mews/purifier": "^3.1",
         "nesbot/carbon": "^2.30",
         "parsedown/laravel": "^1.2"
