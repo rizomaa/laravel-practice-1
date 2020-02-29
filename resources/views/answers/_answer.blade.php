@@ -44,17 +44,10 @@
                                 </div>
                                 
                                 <div class="col-4">
-                                    @include ('shared._author', [
-                                        'model' => $answer,
-                                        'label' => 'answered'
-                                    ])
+                                    <user-info :model="{{ $answer }}" label="answered"></user-info>
                                 </div>
                                 
-                                
-                                
                             </div>
-                            
-                            
                             
                         </div>
                     </div>

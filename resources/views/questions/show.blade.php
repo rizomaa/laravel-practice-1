@@ -26,10 +26,7 @@
                                 <div class="col-4"></div>
                                 <div class="col-4"></div>
                                 <div class="col-4">
-                                @include ('shared._author', [
-                                        'model' => $question,
-                                        'label' => 'Asked'
-                                    ])
+                                    <user-info v-bind:model="{{ $question }}" label="Asked"></user-info>
                                 </div>
                                 
                             </div>
@@ -41,7 +38,7 @@
             </div>
         </div>
     </div>
-    @include('answers._index', [
+    @include('answers._answer', [
         'answers' => $question->answers,
         'answerCount' => $question->answers_count
     ])

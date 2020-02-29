@@ -19,7 +19,7 @@
         
         computed: {
             postDate() {
-                return `${this.label} ${this.model.created_date}`;
+                return this.label + ' ' + this.model.created_date;
             }
         },
         
