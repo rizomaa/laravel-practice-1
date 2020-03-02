@@ -48,8 +48,8 @@ class Question extends Model
     
     //such a function called as an accessor
     public function getBodyHtmlAttribute() {
-     //   return clean($this->bodyHtml());
-        return $this->bodyHtml();
+        return clean($this->bodyHtml());
+     //   return $this->bodyHtml();
     }
     
     public function answers() {
@@ -84,7 +84,7 @@ class Question extends Model
     }
     
     private function bodyHtml() {
-        return \Parsedown::instance()->text($this->body);
+        return clean(\Parsedown::instance()->text($this->body));
     }
     
     public function exerpt($length) {
