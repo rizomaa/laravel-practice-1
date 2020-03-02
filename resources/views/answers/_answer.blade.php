@@ -12,6 +12,7 @@
                 @include ('layouts._messages')
                 
                 @foreach ($answers as $answer)
+<<<<<<< HEAD:resources/views/answers/_answer.blade.php
                     <div class="media">
 
                         @include ('shared._vote', [
@@ -52,6 +53,9 @@
                         </div>
                     </div>
                     <hr>
+=======
+                    @include('answers._answer')
+>>>>>>> lesson27:resources/views/answers/_index.blade.php
                 @endforeach                
             </div>
         </div>
