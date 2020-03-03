@@ -1904,9 +1904,58 @@ module.exports = {
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Answer.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************************************************************************************/
 /*! exports provided: default */
+<<<<<<< HEAD
 /***/ (function(module, exports) {
+=======
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+>>>>>>> lesson29
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /home/jedi/Downloads/laravel-course/practice/first/laravel/resources/js/components/Answer.vue: Support for the experimental syntax 'exportDefaultFrom' isn't currently enabled (2:8):\n\n\u001b[0m \u001b[90m 1 | \u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 2 | \u001b[39m\u001b[36mexport\u001b[39m defaul {\u001b[0m\n\u001b[0m \u001b[90m   | \u001b[39m       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 3 | \u001b[39m    props\u001b[33m:\u001b[39m [\u001b[32m'answer'\u001b[39m]\u001b[0m\n\u001b[0m \u001b[90m 4 | \u001b[39m}\u001b[0m\n\u001b[0m \u001b[90m 5 | \u001b[39m\u001b[0m\n\nAdd @babel/plugin-proposal-export-default-from (https://git.io/vb4yH) to the 'plugins' section of your Babel config to enable transformation.\n    at Parser.raise (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/@babel/parser/lib/index.js:7017:17)\n    at Parser.expectPlugin (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/@babel/parser/lib/index.js:8400:18)\n    at Parser.maybeParseExportDefaultSpecifier (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/@babel/parser/lib/index.js:11782:12)\n    at Parser.parseExport (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/@babel/parser/lib/index.js:11734:29)\n    at Parser.parseStatementContent (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/@babel/parser/lib/index.js:10794:27)\n    at Parser.parseStatement (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/@babel/parser/lib/index.js:10690:17)\n    at Parser.parseBlockOrModuleBlockBody (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/@babel/parser/lib/index.js:11264:25)\n    at Parser.parseBlockBody (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/@babel/parser/lib/index.js:11251:10)\n    at Parser.parseTopLevel (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/@babel/parser/lib/index.js:10621:10)\n    at Parser.parse (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/@babel/parser/lib/index.js:12222:10)\n    at parse (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/@babel/parser/lib/index.js:12273:38)\n    at parser (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/@babel/core/lib/parser/index.js:54:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/@babel/core/lib/transformation/normalize-file.js:93:38)\n    at normalizeFile.next (<anonymous>)\n    at run (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/@babel/core/lib/transformation/index.js:31:50)\n    at run.next (<anonymous>)\n    at Function.transform (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/@babel/core/lib/transform.js:27:41)\n    at transform.next (<anonymous>)\n    at step (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/gensync/index.js:254:32)\n    at gen.next (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/gensync/index.js:266:13)\n    at async.call.value (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/gensync/index.js:216:11)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['answer'],
+  data: function data() {
+    return {
+      editing: false,
+      body: this.answer.body,
+      bodyHtml: this.answer.body_html,
+      id: this.answer.id,
+      questionId: this.answer.question_id,
+      beforeEditCache: null
+    };
+  },
+  methods: {
+    edit: function edit() {
+      this.beforeEditCache = this.body;
+      this.editing = true;
+    },
+    cancel: function cancel() {
+      this.body = this.beforeEditCache;
+      this.editing = false;
+    },
+    update: function update() {
+      var _this = this;
+
+      axios.patch("/questions/".concat(this.questionId, "/answers/").concat(this.id), {
+        body: this.body
+      }).then(function (res) {
+        // console.log(res);
+        _this.editing = false;
+        _this.bodyHtml = res.data.body_html;
+        alert(res.data.message);
+      })["catch"](function (err) {
+        //console.log(err.response);
+        //console.log(`Something went wrong.`);
+        alert(err.response.data.message);
+      });
+    }
+  },
+  computed: {
+    isInvalid: function isInvalid() {
+      return this.body.length < 10;
+    }
+  }
+});
 
 /***/ }),
 
@@ -49733,7 +49782,7 @@ fontawesome.library.add([faCaretUp,faCaretDown,faCheck,faStar]);*/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: expected \"{\".\n    ╷\n137 │ >>>>>>> lesson27\n    │                 ^\n    ╵\n  /home/jedi/Downloads/laravel-course/practice/first/laravel/resources/sass/app.scss 137:17  root stylesheet\n    at runLoaders (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/webpack/lib/NormalModule.js:316:20)\n    at /home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/loader-runner/lib/LoaderRunner.js:233:18\n    at context.callback (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at render (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass-loader/dist/index.js:73:7)\n    at Function.call$2 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:56230:16)\n    at _render_closure1.call$2 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:34691:12)\n    at _RootZone.runBinary$3$3 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:20227:18)\n    at _RootZone.runBinary$3 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:20231:19)\n    at _FutureListener.handleError$1 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:18696:19)\n    at _Future__propagateToListeners_handleError.call$0 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:18984:40)\n    at Object._Future__propagateToListeners (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:3500:88)\n    at _Future._completeError$2 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:18820:9)\n    at _AsyncAwaitCompleter.completeError$2 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:18219:12)\n    at Object._asyncRethrow (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:3256:17)\n    at /home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:10615:20\n    at _wrapJsFunctionForAsync_closure.$protected (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:3279:15)\n    at _wrapJsFunctionForAsync_closure.call$2 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:18240:12)\n    at _awaitOnObject_closure0.call$2 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:18232:25)\n    at _RootZone.runBinary$3$3 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:20227:18)\n    at _RootZone.runBinary$3 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:20231:19)\n    at _FutureListener.handleError$1 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:18696:19)\n    at _Future__propagateToListeners_handleError.call$0 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:18984:40)\n    at Object._Future__propagateToListeners (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:3500:88)\n    at _Future._completeError$2 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:18820:9)\n    at _Future__asyncCompleteError_closure.call$0 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:18910:18)\n    at Object._microtaskLoop (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:3550:21)\n    at StaticClosure._startMicrotaskLoop (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:3556:11)\n    at _AsyncRun__scheduleImmediateJsOverride_internalCallback.call$0 (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:18141:21)\n    at invokeClosure (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:1360:26)\n    at Immediate.<anonymous> (/home/jedi/Downloads/laravel-course/practice/first/laravel/node_modules/sass/sass.dart.js:1381:18)\n    at runCallback (timers.js:705:18)\n    at tryOnImmediate (timers.js:676:5)\n    at processImmediate (timers.js:658:5)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
