@@ -55,7 +55,7 @@ class AnswersController extends Controller
             'body' => 'required',
         ]));
         
-        if ($request->expectsJson()) {
+        if (request()->expectsJson()) {
             return response()->json([
                 'message' => 'Your answer has been saved.',
                 'body_html' => $answer->body_html
@@ -76,6 +76,12 @@ class AnswersController extends Controller
         $this->authorize('delete', $answer);
         
         $answer->delete();
+        
+        if (request()->expectsJson()) {
+            return response()->json([
+                'message' => 'Your answer has been removed.'
+            ]);
+        }
         
         return back()->with('success', 'The answer has been delete.');
     }   
