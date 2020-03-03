@@ -34,29 +34,50 @@ export default {
                // console.log(res);
                 this.editing = false;
                 this.bodyHtml = res.data.body_html;
-                alert(res.data.message);
+                this.$toast.success(res.data.message, "Success", {timeout: 3000, position: 'topCenter'});
+                //alert(res.data.message);
             })
             .catch(err => {
                 //console.log(err.response);
                 //console.log(`Something went wrong.`);
-                
-                alert(err.response.data.message);
+                this.$toast.error(err.response.data.message, "Success", {timeout: 3000, position: 'center'});
+                //alert(err.response.data.message);
             });
         },
         
         destroy() {
-            if (confirm("Are you sure?")) {
-                
-                axios.delete(this.endpoint)
-                .then(res => {
-                    
-                    $(this.$el).fadeOut(500, () => {
-                        alert(res.data.message);
-                    });
-                    
-                });               
-                
-            }
+            
+            this.$toast.question('Are you sure about that?', 'Success', {
+                timeout: 20000,
+                close: false,
+                overlay: true,
+                displayMode: 'once',
+                id: 'question',
+                zindex: 999,
+                position: 'center',
+                buttons: [
+                    ['<button><b>YES</b></button>', (instance, toast) => {
+                   
+                        axios.delete(this.endpoint)
+                        .then(res => {
+
+                            $(this.$el).fadeOut(500, () => {
+                                this.$toast.error(res.data.message, "Success", {timeout: 3000, position: 'bottomLeft'});
+                            });
+                        });               
+
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+
+                    }, true],
+                    ['<button>NO</button>', function (instance, toast) {
+
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+
+                    }],
+                ]
+            });
+            
+            
         }
         
     },
