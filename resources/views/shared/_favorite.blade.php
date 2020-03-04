@@ -3,8 +3,9 @@
    onClick="event.preventDefault(); document.getElementById('favorite-question-{{ $model->id }}').submit();"
    >
     <i class="fas fa-star fa-2x"></i>
+    <span class="favorites-count">{{ $model->favorites_count }}</span>
 </a>
-<span class="favorites-count">{{ $model->favorites_count }}</span>
+
 <form id="favorite-question-{{ $model->id }}" action="/questions/{{ $model->id }}/favorites" method="POST" style="display:none">
     @csrf
     @if ($model->is_favorited) 
