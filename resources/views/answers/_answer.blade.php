@@ -26,7 +26,6 @@
                             @endcan
                             @can ('delete', $answer)
                                 <button @click="destroy" class="btn btn-danger btn-sm">Delete</button>
-                                
                             @endcan
                         </div>
                     </div>

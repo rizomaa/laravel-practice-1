@@ -38,12 +38,9 @@
         <input type="hidden" name="vote" value="-1">
     </form>
 
-
     @if  ($model instanceof App\Question)
-      <favorite v-bind:question="{{ $model }}"></favorite>
-    @elseif ($model instanceof App\Answer) 
-        @include ('shared._accept', [
-            'model' => $model
-        ])
+        <favorite :question="{{ $model }}"></favorite>
+    @elseif ($model instanceof App\Answer)
+        <accept :answer="{{ $model }}"></accept>
     @endif
 </div>
