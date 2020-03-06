@@ -8,9 +8,9 @@
            <span class="votes-count">{{ count }}</span>
         </a>
         
-        <a  :title="title('down')"  
+        <a  :title="title('down')" 
             class="vote-down"
-            :classes="classes"
+            :class="classes"
             @click.prevent="voteDown">
             <i class="fas fa-caret-down fa-3x"></i>
         </a>
@@ -44,10 +44,6 @@
             endpoint() {
                 return `/${this.name}s/${this.id}/vote`;
             },
-            
-            
-            
-            
         },
         
         components: {
