@@ -10,7 +10,7 @@
                         <hr>
                     </div>
                     
-                    <answer v-for="answer in answers" :answer="answer" :key="answer.id"></answer>
+                    <answer v-on:deleted="remove(index)" v-for="(answer, index) in answers" :answer="answer" :key="answer.id"></answer>
                     
                     <div class="text-center mt-3">
                         <button class="btn btn-outline-secondary" 
@@ -44,6 +44,15 @@
         },
         
         methods: {
+            
+            remove(index) {
+                // the first argument (index) is number for removing item and the second argument is a number for removing in splice function
+                this.answers.splice(index, 1);
+                this.count--;
+                
+                this.$toast.error(res.data.message, "Success", {timeout: 3000, position: 'bottomLeft'});
+            },
+            
             fetch(endpoint) {
                 axios.get(endpoint).then(({data}) => {
                     this.answers.push(...data.data);

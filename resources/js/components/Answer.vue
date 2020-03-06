@@ -95,11 +95,14 @@ export default {
                     ['<button><b>YES</b></button>', (instance, toast) => {
                    
                         axios.delete(this.endpoint)
-                        .then(res => {
+                        .then(res => {                            
+                            //create custom event
+                            this.$emit('deleted');
+                            
 
-                            $(this.$el).fadeOut(500, () => {
-                                this.$toast.error(res.data.message, "Success", {timeout: 3000, position: 'bottomLeft'});
-                            });
+//                            $(this.$el).fadeOut(500, () => {
+//                                this.$toast.error(res.data.message, "Success", {timeout: 3000, position: 'bottomLeft'});
+//                            });
                         });               
 
                         instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');

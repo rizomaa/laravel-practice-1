@@ -2078,12 +2078,11 @@ __webpack_require__.r(__webpack_exports__);
         position: 'center',
         buttons: [['<button><b>YES</b></button>', function (instance, toast) {
           axios["delete"](_this2.endpoint).then(function (res) {
-            $(_this2.$el).fadeOut(500, function () {
-              _this2.$toast.error(res.data.message, "Success", {
-                timeout: 3000,
-                position: 'bottomLeft'
-              });
-            });
+            //create custom event
+            _this2.$emit('deleted'); //                            $(this.$el).fadeOut(500, () => {
+            //                                this.$toast.error(res.data.message, "Success", {timeout: 3000, position: 'bottomLeft'});
+            //                            });
+
           });
           instance.hide({
             transitionOut: 'fadeOut'
@@ -2167,6 +2166,15 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     this.fetch("/questions/".concat(this.questionId, "/answers"));
   },
   methods: {
+    remove: function remove(index) {
+      // the first argument (index) is number for removing item and the second argument is a number for removing in splice function
+      this.answers.splice(index, 1);
+      this.count--;
+      this.$toast.error(res.data.message, "Success", {
+        timeout: 3000,
+        position: 'bottomLeft'
+      });
+    },
     fetch: function fetch(endpoint) {
       var _this = this;
 
@@ -38657,10 +38665,15 @@ var render = function() {
                   _c("hr")
                 ]),
                 _vm._v(" "),
-                _vm._l(_vm.answers, function(answer) {
+                _vm._l(_vm.answers, function(answer, index) {
                   return _c("answer", {
                     key: answer.id,
-                    attrs: { answer: answer }
+                    attrs: { answer: answer },
+                    on: {
+                      deleted: function($event) {
+                        return _vm.remove(index)
+                      }
+                    }
                   })
                 }),
                 _vm._v(" "),
