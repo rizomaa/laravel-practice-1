@@ -1,30 +1,34 @@
 <template>
-    <div class="row mt-4" v-cloak v-if="count > 0">
-        <div class="md-col-12">
-            <div class="card">                
-                <div class="card-body">
-                    <div class="card-title">
-                        <h2>
-                            {{ title }}
-                        </h2>
-                        <hr>
-                    </div>
-                    
-                    <answer v-on:deleted="remove(index)" v-for="(answer, index) in answers" :answer="answer" :key="answer.id"></answer>
-                    
-                    <div class="text-center mt-3">
-                        <button class="btn btn-outline-secondary" 
-                                v-if="nextUrl"
-                                @click.prevent="fetch(nextUrl)">Load more answers</button>
+    <div>
+        <div class="row mt-4" v-cloak v-if="count > 0">
+            <div class="md-col-12">
+                <div class="card">                
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h2>
+                                {{ title }}
+                            </h2>
+                            <hr>
+                        </div>
+
+                        <answer v-on:deleted="remove(index)" v-for="(answer, index) in answers" :answer="answer" :key="answer.id"></answer>
+
+                        <div class="text-center mt-3">
+                            <button class="btn btn-outline-secondary" 
+                                    v-if="nextUrl"
+                                    @click.prevent="fetch(nextUrl)">Load more answers</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <new-answer @created="add" :question-id="question.id"></new-answer>
     </div>
 </template>
 
 <script>
     import Answer from './Answer.vue';
+    import NewAnswer from './NewAnswer.vue';
     
     export default {
         //props: ['answers', 'count'],
@@ -45,6 +49,11 @@
         
         methods: {
             
+            add(answer) {
+               this.answers.push(answer);
+               count++;
+            },
+            
             remove(index) {
                 // the first argument (index) is number for removing item and the second argument is a number for removing in splice function
                 this.answers.splice(index, 1);
@@ -64,7 +73,7 @@
         },
                 
         components: {
-            Answer,
+            Answer, NewAnswer
         },
         
         computed: {
