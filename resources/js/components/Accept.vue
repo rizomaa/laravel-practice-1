@@ -13,6 +13,9 @@
 </template>
 
 <script>
+    
+    import EventBus from '../event-bus';
+    
     export default {
         props: ['answer'],
         
@@ -22,6 +25,12 @@
                 id: this.answer.id,
             }
         },
+        
+        created () {
+            EventBus.$on('accepted', id => {
+                this.isBest = (id === this.id);
+            })
+        },  
         
         methods: {
             
@@ -40,6 +49,8 @@
                         this.$toast.success(res.data.message, 'title', {timeout: 2000, position: 'bottomCenter'});
                 });
                 this.isBest = true;
+                
+                EventBus.$emit('accepted', this.id);
             }
         },   
         
