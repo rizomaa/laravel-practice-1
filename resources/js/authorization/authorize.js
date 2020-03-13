@@ -16,6 +16,7 @@ export default {
         
         Vue.prototype.signedIn = window.Auth.signedIn;
     }
+    
 }
 
 

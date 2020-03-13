@@ -26,7 +26,7 @@
         //    @csrf
         //    <input type="hidden" name="vote" value="1">
         //</form>    
-    //onClick="event.preventDefault(); document.getElementById('up-vote-{{ $formId }}').submit();"
+    //onClick="event.preventDefault(); document.getElem entById('up-vote-{{ $formId }}').submit();"
     //onClick="event.preventDefault(); document.getElementById('down-vote-{{ $formId }}').submit();"
     
     import Favorite from './Favorite.vue';
