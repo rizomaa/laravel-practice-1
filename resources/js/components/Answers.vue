@@ -77,8 +77,7 @@
         },
         
         computed: {
-            title() {
-                
+            title() {                
                 return this.count + " " + (this.count > 1 ? 'Answers' : 'Answer');
                 //{{ $answerCount . " " . Str::plural('answer', $answerCount) }}
                 
