@@ -12,7 +12,9 @@
 
                         <div class="media-body">
                             <div class="form-group">
-                                <textarea class="form-control" rows="10" v-model="body" required></textarea>
+                                <m-editor :body="body">
+                                    <textarea class="form-control" rows="10" v-model="body" required></textarea>
+                                </m-editor>
                             </div>
                             Edit answer form
                             <button class="btn btn-outline-primary" type="submit" :disabled="isInvalid">Edit answer</button>
@@ -65,6 +67,7 @@
     import Vote from './Vote.vue';
     import UserInfo from './UserInfo.vue';
     import modification from '../mixins/modification';
+    import MEditor from './MEditor.vue';
     
     export default {
         props: ['question'],
@@ -73,7 +76,8 @@
         
         components: {
             Vote,
-            UserInfo
+            UserInfo,
+            MEditor
         },
         
         data() {
@@ -128,7 +132,7 @@
                     setTimeout(() => {
                         window.location.href='/questions';
                     }, 3000);
-            }
+            }   
         
         }
     }
