@@ -13,7 +13,7 @@
                         <div class="media-body">
                             <div class="form-group">
                                 <m-editor :body="body">
-                                    <textarea class="form-control" rows="10" v-model="body" required></textarea>
+                                    <textarea id="bodytext" class="form-control" rows="10" v-model="body" required></textarea>
                                 </m-editor>
                             </div>
                             Edit answer form

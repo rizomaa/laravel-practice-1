@@ -1,5 +1,5 @@
 <template>
-    <div class="card text-center">
+    <div class="card text-left">
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
           <li class="nav-item">
@@ -11,36 +11,46 @@
         </ul>
       </div>
       <div class="card-body tab-content">
-        <div class="tab-pane fade show active" id="write" role="tabpanel">
+        <div class="tab-pane fade show active" id="write">
             <slot></slot>
         </div>
-        <div class="tab-pane" id="preview" role="tabpanel">
-            Preview... 
+        <div class="tab-pane" id="preview" v-html="preview">123
         </div>
       </div>
     </div>
 </template>
 <script>
+    
+    import MarkdownIt from 'markdown-it';
+    import autosize from 'autosize';
+    
+    const md = new MarkdownIt();
+    
+    
     export default {
         props: ['body'],
+        
+        computed: {
+            preview() {
+                return md.render(this.body);
+            }
+        },
+        
+//        watch: {
+//            body: function() {
+//                console.log('watcher message');
+//            }
+//        },
+        
+        mounted() {
+            autosize(this.$el.querySelector('textarea'));
+        }
+//        
+//        updated() {
+//            //autosize(document.querySelector('textarea'));
+//            
+//        }
+        
     }
+    
 </script>
-
-
-
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-</div>
