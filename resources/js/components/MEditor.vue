@@ -14,7 +14,7 @@
         <div class="tab-pane fade show active" id="write">
             <slot></slot>
         </div>
-        <div class="tab-pane" id="preview" v-html="preview">123
+        <div class="tab-pane" id="preview" v-html="preview">
         </div>
       </div>
     </div>
@@ -23,8 +23,11 @@
     
     import MarkdownIt from 'markdown-it';
     import autosize from 'autosize';
+    import prism from 'markdown-it-prism';
+    import 'prismjs/themes/prism-tomorrow.css'; 
     
     const md = new MarkdownIt();
+    md.use(prism);
     
     
     export default {
