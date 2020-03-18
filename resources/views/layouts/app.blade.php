@@ -16,7 +16,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/prismjs-themes/prism-tomorrow.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/prismjs-themes/prism.css') }}" rel="stylesheet">
 <!--    <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">-->
 </head>
 <body>
@@ -85,6 +85,7 @@
                        ]) !!};
     </script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/prism.min.js"></script>
     
 </body>
 </html>

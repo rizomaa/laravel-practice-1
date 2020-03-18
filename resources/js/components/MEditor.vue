@@ -22,20 +22,22 @@
 <script>
     
     import MarkdownIt from 'markdown-it';
-    import autosize from 'autosize';
     import prism from 'markdown-it-prism';
-    import 'prismjs/themes/prism-tomorrow.css'; 
+    import autosize from 'autosize';
+    
+    
+    import "prismjs/components/prism-css";
+    import "prismjs/components/prism-javascript";
     
     const md = new MarkdownIt();
     md.use(prism);
-    
-    
+        
     export default {
         props: ['body'],
         
         computed: {
             preview() {
-                return md.render(this.body);
+               return md.render(this.body);
             }
         },
         
@@ -45,9 +47,9 @@
 //            }
 //        },
         
-        mounted() {
-            autosize(this.$el.querySelector('textarea'));
-        }
+//        mounted() {
+//            autosize(this.$el.querySelector('textarea'));
+//        }
 //        
 //        updated() {
 //            //autosize(document.querySelector('textarea'));

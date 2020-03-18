@@ -1,4 +1,9 @@
+import highlight from './highlight';
+
 export default {
+    
+    mixins: [highlight],
+    
     data() {
         return {
             editing: '',
@@ -34,7 +39,8 @@ export default {
                 this.bodyHtml = data.body_html;    
                 this.$toast.success(data.message, "Success", { timeout: 3000});
                 this.editing = false;
-            });
+            })
+            .then(() => this.highlight());
         },
         
         //empty method
