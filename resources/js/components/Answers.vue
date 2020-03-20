@@ -43,7 +43,8 @@
                 count: this.question.answers_count,
                 answers: [],
                 answerIds: [],
-                nextUrl: null,
+                nex
+                tUrl: null,
             }  
         },
         
