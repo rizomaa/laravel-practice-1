@@ -4,16 +4,18 @@
         <vote :model="answer" name="answer"></vote>
 
         <div class="media-body">
-            <form v-if="editing === true" @submit.prevent="update">
+            <form v-show="editing === true && authorize('modify', answer)" @submit.prevent="update">
                 <div class="form-group">
-                    <textarea class="form-control" rows="10" v-model="body" required></textarea>
+                    <m-editor :body="body" :name="uniqueName">                        
+                        <textarea class="form-control" rows="10" v-model="body" required></textarea>                        
+                    </m-editor>
                 </div>
                 Edit answer form
                 <button class="btn btn-outline-primary" type="submit" :disabled="isInvalid">Edit answer</button>
                 <button class="btn btn-outline-secondary" @click="cancel" type="Button">Cancel</button>
             </form>
-            <div v-else>
-                <div v-html="bodyHtml"></div>
+            <div v-show="!editing">
+                <div v-html="bodyHtml" ref="bodyHtml"></div>
                 <div class="row">
                     <div class="col-4">
                         <div class="ml-auto">                            
@@ -34,10 +36,7 @@
     </div>
 </template>
 
-<script>
-
-    import Vote from './Vote.vue';
-    import UserInfo from './UserInfo.vue';
+<script> 
     import modification from '../mixins/modification';
     
 export default {    
@@ -45,11 +44,7 @@ export default {
     props: ['answer'],
     
     mixins: [modification],
-    
-    components: {
-        Vote, UserInfo
-    },
-    
+
     data() {
         return {
             body: this.answer.body,
@@ -67,7 +62,7 @@ export default {
         },
         
         restoreFromCache() {
-            this.body = this.beforeEditCache;
+            this.body = this.beforeEditCache.body;
         },
         
         payLoad() {       
@@ -91,11 +86,16 @@ export default {
     computed: {
         
         isInvalid() {
+            //console.log(this.body.length);
             return this.body.length < 10;
         },
         
         endpoint() {
             return `/questions/${this.questionId}/answers/${this.id}`;
+        },
+        
+        uniqueName () {
+            return `answer-${this.id}`;
         }
         
     }   
