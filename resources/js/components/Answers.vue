@@ -42,6 +42,7 @@
                 questionId: this.question.id,
                 count: this.question.answers_count,
                 answers: [],
+                answerIds: [],
                 nextUrl: null,
             }  
         },
@@ -55,7 +56,9 @@
             add(answer) {
                 this.answers.push(answer);
                 this.count++;
-                this.highlight();
+                this.$nextTick(()=> {
+                    this.highlight(`answer-${answer.id}`);      
+                });
             },
             
             remove(index) {
@@ -67,12 +70,23 @@
             },
             
             fetch(endpoint) {
-                axios.get(endpoint).then(({data}) => {
+                
+                this.answerIds = [];
+                
+                axios.get(endpoint)
+                    .then(({data}) => {
+                    
+                    this.answerIds = data.data.map(a => a.id);
                     this.answers.push(...data.data);
                     //this.nextUrl = data.next_page_url ? (this.nextUrl = data.next_page_url) : null ;
                     this.nextUrl = data.next_page_url;
-                //    console.log(data);
-                });
+                    //    console.log(data);
+                    })
+                    .then(()=> {
+                        this.answerIds.forEach(id => {
+                            this.highlight(`answer-${id}`);
+                        });
+                    });
             }
         },
                 
