@@ -15,6 +15,9 @@ use Illuminate\Http\Request;
 
 Route::post('/token', 'Auth\LoginController@getToken');
 
+//all route has api in the beginning of the path, for this example it will be /api/quesstions
+Route::get('/questions', 'Api\QuestionsController@index');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
