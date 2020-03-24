@@ -25,6 +25,10 @@ Route::get('/questions/{slug}', 'Api\QuestionDetailsController');
 Route::middleware(['auth:api'])->group(function() {
     Route::apiResource('/questions', 'Api\QuestionsController')->except('index');
     Route::apiResource('/questions.answers', 'Api\AnswersController')->except('index');
+    
+    //we do not need to specify the method 
+    Route::post('/questions/{question}/vote', 'VoteQuestionController');
+    Route::post('/answers/{answer}/vote', 'VoteAnswerController');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
