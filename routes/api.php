@@ -17,12 +17,14 @@ Route::post('/token', 'Auth\LoginController@getToken');
 
 //all route has api in the beginning of the path, for this example it will be /api/quesstions
 Route::get('/questions', 'Api\QuestionsController@index');
-
+Route::get('/questions/{question}/answers', 'Api\AnswersController@index');
+    
 Route::get('/questions/{slug}', 'Api\QuestionDetailsController');
 
-//Protect our source with middleware
+//Protect our source with group middleware
 Route::middleware(['auth:api'])->group(function() {
     Route::apiResource('/questions', 'Api\QuestionsController')->except('index');
+    Route::apiResource('/questions.answers', 'Api\AnswersController')->except('index');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
