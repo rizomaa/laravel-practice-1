@@ -29,6 +29,10 @@ Route::middleware(['auth:api'])->group(function() {
     //we do not need to specify the method 
     Route::post('/questions/{question}/vote', 'VoteQuestionController');
     Route::post('/answers/{answer}/vote', 'VoteAnswerController');
+    
+    Route::post('/answers/{answer}/accept', 'AcceptAnswerController');
+    Route::post('/questions/{question}/favorites', 'FavoritesController@store');
+    Route::delete('/questions/{question}/favorites', 'FavoritesController@destroy');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
