@@ -43,7 +43,7 @@
                 count: this.question.answers_count,
                 answers: [],
                 answerIds: [],
-                nexgit tUrl: null,
+                nextUrl: null,
             }  
         },
         
