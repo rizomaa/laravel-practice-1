@@ -80,11 +80,14 @@
     
     <!-- Scripts -->
     <script>
-        window.Auth = {!! json_encode([
-                        'signedIn' => Auth::check(),
-                        'user' => Auth::user(),
-                        'url' => route('login'),
-                       ]) !!};
+        window.Auth = @json([
+                    'signedIn' => Auth::check(),
+                    'user' => Auth::user()                    
+                ]);
+        window.Urls = @json([
+                    'api' => url('/api'),
+                    'login' => route('login')
+                ]);
     </script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.19.0/prism.min.js"></script>
