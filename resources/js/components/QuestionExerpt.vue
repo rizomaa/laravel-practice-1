@@ -25,9 +25,7 @@
                     <a href="#" v-if="authorize('modify', question)" class="btn btn-secondary btn-sm text-light">
                         Edit
                     </a>
-                    <form v-if="authorize('deleteQuestion', question)" class="form-delete" action="#" method="post">
-                        @csrf   
-                        @method('DELETE')
+                    <form v-if="authorize('deleteQuestion', question)" class="form-delete" action="#" method="post">                        
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
                 </div>

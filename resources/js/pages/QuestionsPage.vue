@@ -7,7 +7,7 @@
                         <div class="d-flex align-item-center">
                             <h2>All questions</h2>
                             <div class="ml-auto">
-                                <a href="#" class="btn btn-outline-secondary">Ask Question</a>
+                                <router-link :to="{ name: 'questions.create' }" class="btn btn-outline-secondary">Ask Question</router-link>
                             </div>
                         </div>
                     </div>
