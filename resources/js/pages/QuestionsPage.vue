@@ -14,7 +14,11 @@
 
                     <div class="card-body">
                         <div v-if="questions.length">
-                            <question-exerpt v-for="question in questions" :question="question" :key="question.id"></question-exerpt>
+                            <question-exerpt 
+                                             v-for="(question, index) in questions" 
+                                             :question="question" 
+                                             :key="question.id"  
+                                             @deleted="remove(index)"></question-exerpt>
                         </div>
                         <div v-else class="alert alert-warning">
                             Please add your first question
@@ -46,6 +50,11 @@
                     .then(({ data }) => {
                         this.questions = data.data
                 })
+            },
+            
+            remove(index) {
+                this.questions.splice(index, 1)
+                this.count--
             }
         }
     }

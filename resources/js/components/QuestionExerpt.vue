@@ -26,10 +26,13 @@
                                  v-if="authorize('modify', question)" 
                                  class="btn btn-secondary btn-sm text-light">
                         Edit
-                    </router-link>
-                    <form v-if="authorize('deleteQuestion', question)" class="form-delete" action="#" method="post">                        
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
-                    </form>
+                    </router-link>                                    
+                    <button type="button" 
+                            v-if="authorize('deleteQuestion', question)" 
+                            class="btn btn-danger btn-sm" 
+                            @click="destroy">
+                        Delete
+                    </button>
                 </div>
 
             </div>
@@ -44,17 +47,28 @@
                   
 </template>
 <script>
+    import destroy from '../mixins/destroy'
+    
     export default {
+        mixins: [destroy],
+        
         props: [
           'question'  
         ],
+        
         methods: {
             str_plural(str, count) {
                 return str + (count > 1 ? 'c' : '');
-            },            
-            exerpt() {
-            
             },
+            
+            delete() {
+                axios.delete("/questions/" + this.question.id)
+                    .then(( {data}) => {
+                            this.$toast.success(data.message, "Success", { timeout: 2000});
+                            this.$emit('deleted');
+                        })
+                    .catch();
+            }
         },
         computed: {
             statusClasses() {
