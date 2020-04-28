@@ -22,9 +22,11 @@
 
                 <h3 class="mt-0"><a href="#">{{ question.title }}</a></h3>
                 <div class="ml-auto">
-                    <a href="#" v-if="authorize('modify', question)" class="btn btn-secondary btn-sm text-light">
+                    <router-link :to="{ name: 'questions.edit', params: { id: question.id }}" 
+                                 v-if="authorize('modify', question)" 
+                                 class="btn btn-secondary btn-sm text-light">
                         Edit
-                    </a>
+                    </router-link>
                     <form v-if="authorize('deleteQuestion', question)" class="form-delete" action="#" method="post">                        
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</button>
                     </form>

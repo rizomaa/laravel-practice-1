@@ -3,6 +3,7 @@ import QuestionPage from '../pages/QuestionPage.vue'
 import MyPostsPage from '../pages/MyPostsPage.vue'
 import NotFoundPage from '../pages/NotFoundPage.vue'
 import CreateQuestionPage from '../pages/CreateQuestionPage.vue'
+import EditQuestionPage from '../pages/EditQuestionPage.vue'
 
 const routes = [
     {
@@ -21,19 +22,23 @@ const routes = [
         name: 'questions.create'
     },
     {
+        path: '/questions/:id/edit',
+        component: EditQuestionPage,
+        name: 'questions.edit'
+    },
+    {
         path: '/my-posts',
         component: MyPostsPage,
         name: 'my-posts',
         meta: {
-            requiresAuth: true
-                
+            requiresAuth: true                
         }
     },
     {
         path: '/questions/:slug', // this is similar as in {slug} in Laravel
         component: QuestionPage,
         name: 'questions.show'
-    },    
+    },  
     {
         path: '*',
         component: NotFoundPage
