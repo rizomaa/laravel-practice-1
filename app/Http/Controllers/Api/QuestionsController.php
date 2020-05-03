@@ -17,7 +17,11 @@ class QuestionsController extends Controller
      */
     public function index()
     {
+        
         $questions = Question::with('user')->latest()->paginate(10);
+        
+        //imitate real server process// in production does not need to be switched on
+        if (env('APP_ENV') == 'local') sleep(2);
         
         return QuestionResource::collection($questions);
                 

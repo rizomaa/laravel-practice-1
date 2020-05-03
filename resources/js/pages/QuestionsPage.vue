@@ -13,7 +13,8 @@
                     </div>
 
                     <div class="card-body">
-                        <div v-if="questions.length">
+                        <spinner v-if="$root.loading"></spinner>
+                        <div v-else-if="questions.length">
                             <question-exerpt 
                                              v-for="(question, index) in questions" 
                                              :question="question"
@@ -46,7 +47,7 @@
             fetchQuestions() {
                 axios.get('/questions')
                     .then(({ data }) => {
-                        this.questions = data.data
+                        this.questions = data.data             
                 })
             },
             

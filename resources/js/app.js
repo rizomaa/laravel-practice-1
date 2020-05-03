@@ -12,6 +12,7 @@ window.Vue = require('vue');
 import VueIziToast from 'vue-izitoast';
 import Authorization from './authorization/authorize';
 import router from './router'
+import Spinner from './components/Spinner.vue'
 
 
 import 'izitoast/dist/css/iziToast.min.css';
@@ -30,9 +31,11 @@ Vue.use(Authorization);
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+//Vue.component('favorite', require('./components/Favorite.vue').default);
+Vue.component('spinner', Spinner);
 
-Vue.component('favorite', require('./components/Favorite.vue').default);
-Vue.component('question-page', require('./pages/QuestionPage.vue').default);
+//Vue.component('question-page', require('./pages/QuestionPage.vue').default);
+
 
 
 
@@ -45,5 +48,33 @@ Vue.component('question-page', require('./pages/QuestionPage.vue').default);
 
 const app = new Vue({
     el: '#app',
+    
+    
+    data: {
+        loading: false
+    },
+    
+    created() {
+        
+        axios.interceptors.request.use((config) => {
+            console.log('request intercepted');
+            
+            this.loading = true
+            return config;
+          }, (error) => {            
+            this.loading = false
+            return Promise.reject(error);
+          });
+        
+        axios.interceptors.response.use((response) => {
+            console.log('response intercepted');            
+            this.loading = false
+            return response;
+          }, (error) =>git {
+            this.loading = false
+            return Promise.reject(error);
+          });
+        
+    },
     router
 });
