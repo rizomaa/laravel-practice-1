@@ -70,7 +70,7 @@ const app = new Vue({
             console.log('response intercepted');            
             this.loading = false
             return response;
-          }, (error) =>git {
+          }, (error) => {
             this.loading = false
             return Promise.reject(error);
           });

@@ -3490,6 +3490,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -56942,7 +56943,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "spinner" }, [
-      _c("div", { staticClass: "fa fa-spinner fa-spin fa-3x" })
+      _c("i", { staticClass: "fa fa-spinner fa-spin fa-3x" })
     ])
   }
 ]
@@ -57267,70 +57268,79 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _vm.posts.length
-              ? _c(
-                  "ul",
-                  { staticClass: "list-group list-group-flush" },
-                  _vm._l(_vm.posts, function(post, index) {
-                    return _c(
-                      "li",
-                      { key: index, staticClass: "list-group-item" },
-                      [
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col" }, [
-                            _c(
-                              "span",
-                              {
-                                staticClass: "post-badge",
-                                class: { accepted: post.accepted }
-                              },
-                              [_vm._v(_vm._s(post.type))]
-                            ),
+          _c(
+            "div",
+            { staticClass: "card-body" },
+            [
+              _vm.$root.loading
+                ? _c("spinner")
+                : _vm.posts.length
+                ? _c(
+                    "ul",
+                    { staticClass: "list-group list-group-flush" },
+                    _vm._l(_vm.posts, function(post, index) {
+                      return _c(
+                        "li",
+                        { key: index, staticClass: "list-group-item" },
+                        [
+                          _c("div", { staticClass: "row" }, [
+                            _c("div", { staticClass: "col" }, [
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "post-badge",
+                                  class: { accepted: post.accepted }
+                                },
+                                [_vm._v(_vm._s(post.type))]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "ml-4 votes-count",
+                                  class: { accepted: post.accepted }
+                                },
+                                [_vm._v(_vm._s(post.votes_count))]
+                              )
+                            ]),
                             _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "ml-4 votes-count",
-                                class: { accepted: post.accepted }
-                              },
-                              [_vm._v(_vm._s(post.votes_count))]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-9 text-left" }, [
-                            _vm._v(
-                              "\n                                " +
-                                _vm._s(post.title) +
-                                "\n                            "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col text-right" }, [
-                            _vm._v(_vm._s(post.created_at))
+                            _c("div", { staticClass: "col-md-9 text-left" }, [
+                              _vm._v(
+                                "\n                                " +
+                                  _vm._s(post.title) +
+                                  "\n                            "
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col text-right" }, [
+                              _vm._v(_vm._s(post.created_at))
+                            ])
                           ])
-                        ])
-                      ]
-                    )
-                  }),
-                  0
-                )
-              : _c(
-                  "div",
-                  { staticClass: "alert alert-warning" },
-                  [
-                    _vm._v("T\n                    "),
-                    _c("p", [_vm._v("There is no any activitie for the user")]),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
-                      { attrs: { to: { name: "questions.create" } } },
-                      [_vm._v("Create a new question")]
-                    )
-                  ],
-                  1
-                )
-          ])
+                        ]
+                      )
+                    }),
+                    0
+                  )
+                : _c(
+                    "div",
+                    { staticClass: "alert alert-warning" },
+                    [
+                      _vm._v("T\n                    "),
+                      _c("p", [
+                        _vm._v("There is no any activitie for the user")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        { attrs: { to: { name: "questions.create" } } },
+                        [_vm._v("Create a new question")]
+                      )
+                    ],
+                    1
+                  )
+            ],
+            1
+          )
         ])
       ])
     ])
