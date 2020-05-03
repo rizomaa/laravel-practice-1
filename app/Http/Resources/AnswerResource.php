@@ -23,7 +23,8 @@ class AnswerResource extends JsonResource
             'created_date'  => $this->created_date,
             'body'          => $this->body,
             'body_html'     => $this->body_html,
-            'user'          => new UserResource($this->user)
+            'user'          => new UserResource($this->user),
+            'question_user_id' => $this->question->user_id
         ];
     }
 }

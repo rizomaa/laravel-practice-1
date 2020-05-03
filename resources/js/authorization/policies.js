@@ -5,10 +5,10 @@ export default {
     },
     
     accept (user, answer) {
-        return user.id === answer.question.user.id;  
+        return user.id === answer.question_user_id;  
     },
     
     deleteQuestion(user, question) {
-        return user.id === question.user.   id && question.answers_count < 1;
+        return user.id === question.user.id && question.answers_count < 1;
     } 
 }

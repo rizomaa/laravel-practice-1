@@ -22,7 +22,9 @@ Route::post('/register', 'Api\Auth\RegisterController');
 Route::get('/questions', 'Api\QuestionsController@index');
 Route::get('/questions/{question}/answers', 'Api\AnswersController@index');
     
-Route::get('/questions/{question}-{slug}', 'Api\QuestionDetailsController');
+//Route::get('/questions/{question}-{slug}', 'Api\QuestionDetailsController');
+Route::get('/questions/{question}', 'Api\QuestionDetailsController@');
+Route::get('/question/{slug}', 'Api\QuestionDetailsController');
 
 
 //Protect our source with group middleware

@@ -17,7 +17,7 @@ class QuestionResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'url' => $this->slug,
+            'slug' => $this->slug,
             'exerpt' => $this->exerpt,
             'created_date' => $this->created_date,
             'status' => $this->status,

@@ -16,14 +16,12 @@
                         <div v-if="questions.length">
                             <question-exerpt 
                                              v-for="(question, index) in questions" 
-                                             :question="question" 
-                                             :key="question.id"  
-                                             @deleted="remove(index)"></question-exerpt>
+                                             :question="question"
+                                             :key="question.id"                                             @deleted="remove(index)"></question-exerpt>
                         </div>
                         <div v-else class="alert alert-warning">
                             Please add your first question
                         </div>
-
 <!--                        questions.links-->
                     </div>
                 </div>

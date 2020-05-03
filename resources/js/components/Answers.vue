@@ -13,10 +13,9 @@
 
                         <answer v-on:deleted="remove(index)" v-for="(answer, index) in answers" :answer="answer" :key="answer.id"></answer>
 
-                        <div class="text-center mt-3">
+                        <div class="text-center mt-3" v-if="theNextUrl">
                             <button class="btn btn-outline-secondary" 
-                                    v-if="nextUrl"
-                                    @click.prevent="fetch(nextUrl)">Load more answers</button>
+                                    @click.prevent="fetch(theNextUrl)">Load more answers</button>
                         </div>
                     </div>
                 </div>
@@ -30,6 +29,7 @@
     import Answer from './Answer.vue';
     import NewAnswer from './NewAnswer.vue';
     import highlight from '../mixins/highlight';
+    import EventBus from '../event-bus'
     
     export default {
         //props: ['answers', 'count'],
@@ -44,6 +44,7 @@
                 answers: [],
                 answerIds: [],
                 nextUrl: null,
+                excludeAnswers: []
             }  
         },
         
@@ -54,11 +55,18 @@
         methods: {
             
             add(answer) {
+                this.excludeAnswers.push(answer);
+                
                 this.answers.push(answer);
                 this.count++;
                 this.$nextTick(()=> {
                     this.highlight(`answer-${answer.id}`);      
                 });
+                
+                if (this.count === 1) {
+                    EventBus.$emit('answers-count-changed', this.count);
+                }
+                
             },
             
             remove(index) {
@@ -66,7 +74,11 @@
                 this.answers.splice(index, 1);
                 this.count--;
                 
-                this.$toast.error(res.data.message, "Success", {timeout: 3000, position: 'bottomLeft'});
+                //To handle data with Delete Button
+                if (this.count === 0) {
+                    EventBus.$emit('answers-count-changed', this.count);
+                }                
+                
             },
             
             fetch(endpoint) {
@@ -79,7 +91,10 @@
                     this.answerIds = data.data.map(a => a.id);
                     this.answers.push(...data.data);
                     //this.nextUrl = data.next_page_url ? (this.nextUrl = data.next_page_url) : null ;
-                    this.nextUrl = data.next_page_url;
+                    
+                    // old version this.nextUrl = data.next_page_url;
+                    this.nextUrl = data.links.next;
+                    
                     //    console.log(data);
                     })
                     .then(()=> {
@@ -101,6 +116,13 @@
                 
             },
             
+            theNextUrl() {
+                
+                if (this.nextUrl && this.excludeAnswers.length) {
+                    return this.nextUrl + this.excludeAnswers.map(a => '&excludes[]' + a.id).join('');
+                }
+                return this.nextUrl;
+            }
         },
     }
 </script>

@@ -28,7 +28,10 @@
                         <div class="d-flex align-item-center">
                             <h1>{{ title }}</h1> 
                             <div class="ml-auto">
-                                <a href="/questions" class="btn btn-outline-secondary">Back to all questions</a>
+                                <router-link :to="{ name: 'questions' }"
+                                             class="btn btn-outline-secondary">
+                                    Back to all questions
+                                </router-link>
                             </div>
                         </div>
                     </div>
@@ -64,7 +67,10 @@
     </div>
 </template>
 <script>
-    import modification from '../mixins/modification';        
+    import modification from '../mixins/modification';
+    import EventBus from '../event-bus'
+
+    
     export default {
         props: ['question'],
         
@@ -94,6 +100,12 @@
             }
         },
         
+        mounted() {
+          EventBus.$on('answers-count-changed', (count) => {
+              this.question.answers_count = count
+          })
+        },
+        
         methods: {
             setEditCache() {
                 this.beforeEditCache = {
@@ -120,12 +132,17 @@
             delete () {
                 axios.delete(this.endpoint)
                     .then(({data}) => {  
-                         this.$toast.success(data.message, "Successful deleting", {timeout: 2000, position: 'bottomLeft'});
+                        
+                        this.$toast.success(data.message, "Successful deleting", {timeout: 2000, position: 'bottomLeft'});
+                    
+                        this.$router.push({ name: 'questions'});
                     });   
-
+/*
                     setTimeout(() => {
-                        window.location.href='/questions';
+                        
+                        //window.location.href='/questions';
                     }, 3000);
+                    */
             }   
         
         }

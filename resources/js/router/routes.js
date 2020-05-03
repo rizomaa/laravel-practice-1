@@ -35,9 +35,10 @@ const routes = [
         }
     },
     {
-        path: '/questions/:slug', // this is similar as in {slug} in Laravel
+        path: '/question/:slug', // this is similar as in {slug} in Laravel
         component: QuestionPage,
-        name: 'questions.show'
+        name: 'questions.show',
+        props: true
     },  
     {
         path: '*',
