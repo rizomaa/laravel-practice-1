@@ -18,8 +18,8 @@ class QuestionDetailsController extends Controller
      */
     public function __invoke(Question $question)
     {
-        $question->increment('views');
-         
+            $question->increment('views');
+
         return new QuestionDetailsResource($question);       
         
     }
