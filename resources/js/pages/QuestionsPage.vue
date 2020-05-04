@@ -12,50 +12,19 @@
                         </div>
                     </div>
 
-                    <div class="card-body">
-                        <spinner v-if="$root.loading"></spinner>
-                        <div v-else-if="questions.length">
-                            <question-exerpt 
-                                             v-for="(question, index) in questions" 
-                                             :question="question"
-                                             :key="question.id"                                             @deleted="remove(index)"></question-exerpt>
-                        </div>
-                        <div v-else class="alert alert-warning">
-                            Please add your first question
-                        </div>
-<!--                        questions.links-->
-                    </div>
+                    <questions></questions>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-    import QuestionExerpt from '../components/QuestionExerpt'
-    export default {
-        components: { QuestionExerpt },
+    
+    import Questions from '../components/Questions.vue'
+    
+    export default {        
+        components: { Questions },       
         
-        data() {
-            return {
-                questions: [],
-            }
-        },
-        mounted() {
-            this.fetchQuestions();
-        },
-        methods: {
-            fetchQuestions() {
-                axios.get('/questions')
-                    .then(({ data }) => {
-                        this.questions = data.data             
-                })
-            },
-            
-            remove(index) {
-                this.questions.splice(index, 1)
-                this.count--
-            }
-        }
     }
 </script>
 
