@@ -31,6 +31,8 @@ class AnswersController extends Controller
             'body' => 'required'
         ]) + ['user_id' => Auth::id()]); //Merge with plus operator...
         
+        if (env('APP_ENV') == 'local') sleep(2);
+        
         if ($request->expectsJson()) {
             return response()->json([
                 'message' => 'The answer has been added.',

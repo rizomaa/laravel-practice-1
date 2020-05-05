@@ -2710,6 +2710,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['questionId'],
@@ -3108,6 +3111,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3266,7 +3272,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    small: {
+      type: Boolean,
+      "default": false
+    },
+    minWidth: {
+      type: Number,
+      "default": 107.66
+    }
+  },
+  computed: {
+    sizeClass: function sizeClass() {
+      return this.small ? '' : 'fa-3x';
+    },
+    getMinWidth: function getMinWidth() {
+      return {
+        minWidth: this.minWidth + 'px'
+      };
+    }
+  }
+});
 
 /***/ }),
 
@@ -56477,7 +56504,14 @@ var render = function() {
                     staticClass: "btn btn-lg btn-outline-primary",
                     attrs: { type: "submit", disabled: _vm.isInvalid }
                   },
-                  [_vm._v("Submit")]
+                  [
+                    _vm.$root.loading
+                      ? _c("spinner", {
+                          attrs: { small: true, "min-width": 91.47 }
+                        })
+                      : _c("span", [_vm._v("Submit")])
+                  ],
+                  1
                 )
               ])
             ]
@@ -57060,7 +57094,12 @@ var render = function() {
             staticClass: "btn btn-outline-primary btn-lg",
             attrs: { type: "submit" }
           },
-          [_vm._v(_vm._s(_vm.buttonText))]
+          [
+            _vm.$root.loading
+              ? _c("spinner", { attrs: { small: true } })
+              : _c("span", [_vm._v(_vm._s(_vm.buttonText))])
+          ],
+          1
         )
       ])
     ]
@@ -57148,18 +57187,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "spinner", style: _vm.getMinWidth }, [
+    _c("i", { staticClass: "fa fa-spinner fa-spin", class: _vm.sizeClass })
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "spinner" }, [
-      _c("i", { staticClass: "fa fa-spinner fa-spin fa-3x" })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

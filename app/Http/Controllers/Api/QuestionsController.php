@@ -41,6 +41,8 @@ class QuestionsController extends Controller
         //return redirect('/questions');
         //return redirect()->route('questions.index')->with('success', 'Your question has been submitted');
         
+        if (env('APP_ENV') == 'local') sleep(2);
+        
         return response()->json([
             'message' => 'Your question has been submitted',
             'question' => new QuestionResource($question)
