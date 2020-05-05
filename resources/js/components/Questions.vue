@@ -2,11 +2,12 @@
 <div>
     <div class="card-body">
         <spinner v-if="$root.loading"></spinner>
-        <div v-else-if="questions.length">
+        <div v-if="questions.length">
             <question-exerpt 
                              v-for="(question, index) in questions" 
                              :question="question"
-                             :key="question.id"                                             @deleted="remove(index)"></question-exerpt>
+                             :key="question.id"
+                             @deleted="remove(index)"></question-exerpt>
         </div>
         <div v-else class="alert alert-warning">
             Please add your first question

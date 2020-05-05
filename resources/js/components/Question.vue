@@ -45,7 +45,7 @@
                             
                             <div class="row">
                                 <div class="col-4">
-                                     <a v-if="authorize('modify', question)" @click.prevent="edit" class="btn btn-secondary btn-sm text-light">Edit</a>                            
+                                     <a v-if="authorize('modify', question)" @click.prevent="   edit" class="btn btn-secondary btn-sm text-light">Edit</a>                            
                                     <button  v-if="authorize('deleteQuestion', question)" @click="destroy" class="btn btn-danger btn-sm">Delete</button>
                                 </div>
                                 <div class="col-4"></div>

@@ -2778,7 +2778,9 @@ __webpack_require__.r(__webpack_exports__);
   props: ['links', 'meta'],
   computed: {
     pagesInfo: function pagesInfo() {
-      return "Pages ".concat(this.meta.current_page, " of ").concat(this.meta.last_page);
+      var currentPage = this.meta.current_page ? this.meta.current_page : 1;
+      var lastPage = this.meta.last_page ? this.meta.last_page : 1;
+      return "Pages ".concat(currentPage, " of ").concat(lastPage);
     },
     isFirst: function isFirst() {
       return this.meta.current_page === 1;
@@ -3190,6 +3192,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _QuestionExerpt_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./QuestionExerpt.vue */ "./resources/js/components/QuestionExerpt.vue");
 /* harmony import */ var _Pagination_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Pagination.vue */ "./resources/js/components/Pagination.vue");
+//
 //
 //
 //
@@ -57132,9 +57135,9 @@ var render = function() {
       "div",
       { staticClass: "card-body" },
       [
-        _vm.$root.loading
-          ? _c("spinner")
-          : _vm.questions.length
+        _vm.$root.loading ? _c("spinner") : _vm._e(),
+        _vm._v(" "),
+        _vm.questions.length
           ? _c(
               "div",
               _vm._l(_vm.questions, function(question, index) {
